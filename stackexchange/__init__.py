@@ -278,7 +278,7 @@ class Tag(JSONModel):
     id = property(lambda self: self.name)
 
     def __repr__(self):
-	return "<Tag '%s' >" % self.name
+        return "<Tag '%s' >" % self.name
 
     def __hash__(self):
         return self.name
