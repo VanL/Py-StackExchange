@@ -277,6 +277,9 @@ class Tag(JSONModel):
     # Hack so that Site.vectorise() works correctly
     id = property(lambda self: self.name)
 
+    def __repr__(self):
+        return '<Tag(%s)>' % self.name
+
     def _extend(self, json, site):
         self.synonyms = StackExchangeLazySequence(TagSynonym, None, site, 'tags/%s/synonyms' % self.name, self._up('synonyms'), 'tag_synonyms')
         self.wiki = StackExchangeLazyObject(TagWiki, site, 'tags/%s/wikis' % self.name, self._up('wiki'), 'tag_wikis')
