@@ -287,6 +287,9 @@ class Tag(JSONModel):
     def top_answerers(self, period, **kw):
         return self.site.build('tags/%s/top-answerers/%s' % (self.name, period), TopUser, 'top_users', kw)
 
+    def related(self, **kw):
+        return self.site.build('tags/%s/related' % (self.name), Tag, 'related', kw)
+
 ##### Users ####
 class BadgeType(Enumeration):
     """Describes the rank or type of a badge: one of Bronze, Silver or Gold."""
