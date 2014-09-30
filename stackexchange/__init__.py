@@ -278,7 +278,7 @@ class Tag(JSONModel):
     id = property(lambda self: self.name)
 
     def __repr__(self):
-        return "<Tag '%s' >" % self.name
+        return "<Tag '%s'>" % self.name
 
     def __hash__(self):
         return hash(self.name)
@@ -603,6 +603,7 @@ through here."""
         self.domain = domain
         self.app_key = app_key
         self.api_version = '2.2'
+        self.debug = False
 
         self.impose_throttling = impose_throttling
         self.throttle_stop = True
@@ -659,6 +660,8 @@ through here."""
         request_properties = dict([(x, getattr(self, x)) for x in ('impose_throttling', 'throttle_stop')])
         request_properties.update(self.cache_options)
         request_mgr = WebRequestManager(**request_properties)
+        if self.debug: request_mgr.debug = True
+        
 
         json, info = request_mgr.json_request(url, new_params)
 

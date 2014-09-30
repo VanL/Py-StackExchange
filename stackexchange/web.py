@@ -137,6 +137,8 @@ class WebRequestManager(object):
 
         # Check for errors
         if error_code != 200:
+            self.debug_print('Error Code> ', error_code)
+            self.debug_print('Info> ', info)
             try:
                 error_ob = json.loads(actual_data.decode('utf8'))
             except:
