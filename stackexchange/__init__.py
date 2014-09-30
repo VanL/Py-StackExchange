@@ -281,7 +281,7 @@ class Tag(JSONModel):
         return "<Tag '%s' >" % self.name
 
     def __hash__(self):
-        return self.name
+        return hash(self.name)
 
     def _extend(self, json, site):
         self.synonyms = StackExchangeLazySequence(TagSynonym, None, site, 'tags/%s/synonyms' % self.name, self._up('synonyms'), 'tag_synonyms')
